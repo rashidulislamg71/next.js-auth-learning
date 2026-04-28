@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Authentication and Authorization
 
-First, run the development server:
+প্রোগ্রামিংয়ের জগতে Authentication  and Authorization  শব্দ দুটি শুনতে একরকম মনে হলেও এদের কাজ সম্পূর্ণ আলাদা। সহজ কথায় বললে: Authentication হলো "আপনি কে?" আর Authorization হলো "আপনি কী কী করতে পারবেন?"
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+নিচে বিস্তারিত এবং সহজভাবে এদের পার্থক্য দেওয়া হলো:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+***1. Authentication ***
+এটি হলো কোনো ব্যবহারকারীর পরিচয় নিশ্চিত করার প্রক্রিয়া। যখন আপনি কোনো সিস্টেমে লগ-ইন করার চেষ্টা করেন, সিস্টেম চেক করে দেখে আপনি আসলেই সেই ব্যক্তি কি না।
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+উদাহরণ: আপনি যখন আপনার বাড়ির দরজায় চাবি দিয়ে তালা খোলেন, তখন ওই চাবিটি 
+আপনার "Authentication"। এটি প্রমাণ করে যে আপনার কাছে ভেতরে ঢোকার অনুমতি আছে।
 
-## Learn More
+Programming এ Authentication:
 
-To learn more about Next.js, take a look at the following resources:
+- ইউজারনেম এবং পাসওয়ার্ড।
+- ওটিপি (OTP) বা টু-ফ্যাক্টর অথেন্টিকেশন (2FA)।
+- ফেস আইডি বা ফিঙ্গারপ্রিন্ট।
+- সোশ্যাল লগ-ইন (Google বা Facebook দিয়ে লগ-ইন)।
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+***2. Authorization ***
+পরিচয় নিশ্চিত হওয়ার পর (অর্থাৎ লগ-ইন করার পর), আপনি ওই সিস্টেমের ভেতরে কোন কোন ফাইল দেখতে পারবেন বা কোন কোন বাটন ক্লিক করতে পারবেন, তা নির্ধারণ করাই হলো অথরাইজেশন।
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+উদাহরণ: ধরুন আপনি একটি অফিসে ঢুকলেন (Authentication success)। কিন্তু আপনি চাইলেই কি বসের ড্রয়ার খুলতে পারবেন? না, পরবেন না। আপনার পরিচয় "এমপ্লয়ি" হিসেবে আপনাকে শুধু আপনার ডেস্কে বসার অনুমতি দেয়, বসের কেবিনে ঢোকার নয়। এটাই হলো Authorization.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Programming এ Authorization:
+- Admin: সে ইউজারের ডেটা ডিলিট করতে পারবে।
+- User: সে শুধু নিজের প্রোফাইল এডিট করতে পারবে।
+- Guest: সে শুধু ব্লগ পড়তে পারবে, কিন্তু কমেন্ট করতে পারবে না।
