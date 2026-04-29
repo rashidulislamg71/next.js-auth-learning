@@ -4,6 +4,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
+import ThemeToggle from './ThemeToggle';
 
 function NavBar() {
 
@@ -30,6 +31,9 @@ function NavBar() {
                         <li className='btn '><Link href={"#"}>SignIn</Link></li>
                         <li className={isActive("/auth/signup")} ><Link href={"/auth/signup"}>SignUp</Link></li>
                     </ul>
+                </div>
+                <div>
+                    <ThemeToggle />
                 </div>
             </div>
         </div>
