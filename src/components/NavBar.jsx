@@ -5,8 +5,21 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
 import ThemeToggle from './ThemeToggle';
+import { signOut, useSession } from '@/lib/auth-client';
+import { Button } from '@heroui/react';
 
 function NavBar() {
+
+
+    const { data, isPending } = useSession();
+
+    if (isPending) {
+        <h2>Loading....</h2>
+    }
+
+    const user = data?.user;
+
+    console.log(user)
 
     const namePath = usePathname();
 
@@ -28,8 +41,11 @@ function NavBar() {
                 </div>
                 <div>
                     <ul className='flex justify-center items-center gap-5 '>
-                        <li className={isActive("/auth/signin")}><Link href={"/auth/signin"}>SignIn</Link></li>
-                        <li className={isActive("/auth/signup")} ><Link href={"/auth/signup"}>SignUp</Link></li>
+                        {
+                            user ? <div className='flex  items-center gap-4'><p>{user.name}</p>
+                                <Button onClick={()=> signOut()}>Logout</Button>
+                            </div> : <li className={isActive("/auth/signin")}><Link href={"/auth/signin"}>SignIn</Link></li>
+                        }
                     </ul>
                 </div>
                 <div>
