@@ -18,8 +18,15 @@ const SignUpPage = () => {
             email: userData.email,
             password: userData.password,
             name: userData.name,
+            callbackURL: "/"
         });
-        console.log(data, error);
+
+        if (error) {
+            alert(`Error SignUp:` + error.message)
+        }
+        if(data) {
+            alert("signup successfully!")
+        }
     }
 
 

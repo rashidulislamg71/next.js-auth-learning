@@ -28,7 +28,7 @@ function NavBar() {
                 </div>
                 <div>
                     <ul className='flex justify-center items-center gap-5 '>
-                        <li className='btn '><Link href={"#"}>SignIn</Link></li>
+                        <li className={isActive("/auth/signin")}><Link href={"/auth/signin"}>SignIn</Link></li>
                         <li className={isActive("/auth/signup")} ><Link href={"/auth/signup"}>SignUp</Link></li>
                     </ul>
                 </div>
