@@ -1,23 +1,26 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 
 
+
+
 const SignUpPage = () => {
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        const data = {};
-
-        // Convert FormData to plain object
-        formData.forEach((value, key) => {
-            data[key] = value.toString();
+        const userData = Object.fromEntries(formData.entries());
+        console.log(userData)
+        const { data, error } = await authClient.signUp.email({
+            email: userData.email,
+            password: userData.password,
+            name: userData.name,
         });
-
-        alert(`Form submitted with: ${JSON.stringify(data, null, 2)}`);
-    };
+        console.log(data, error);
+    }
 
 
     return (
@@ -38,7 +41,7 @@ const SignUpPage = () => {
                     }}
                 >
                     <Label>Name</Label>
-                    <Input placeholder="John Doe" />
+                    <Input name="name" placeholder="John Doe" />
                     <FieldError />
                 </TextField>
                 <TextField
@@ -54,7 +57,7 @@ const SignUpPage = () => {
                     }}
                 >
                     <Label>Email</Label>
-                    <Input placeholder="john@example.com" />
+                    <Input name="email" placeholder="john@example.com" />
                     <FieldError />
                 </TextField>
 
@@ -78,7 +81,7 @@ const SignUpPage = () => {
                     }}
                 >
                     <Label>Password</Label>
-                    <Input placeholder="Enter your password" />
+                    <Input name="password" placeholder="Enter your password" />
                     <Description>Must be at least 8 characters with 1 uppercase and 1 number</Description>
                     <FieldError />
                 </TextField>
@@ -97,5 +100,4 @@ const SignUpPage = () => {
     )
 
 }
-
 export default SignUpPage;
